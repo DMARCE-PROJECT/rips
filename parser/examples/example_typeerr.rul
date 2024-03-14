@@ -1,0 +1,26 @@
+#!/bin/rips
+
+levels:
+	ALEV; #A level
+	B;
+	C soft;
+
+vars:
+	patata int = 0.0;
+	cebolla string = "hola";
+	iscebolla bool = false;
+	zanahoria float = 18;
+
+rules Msg:
+	cebolla > 0.0 ?
+		set(iscebolla, true),
+		heremsg(3);
+
+	(zanahoria > 7 && cebolla > "hola") ? 
+		gohere(1) =>
+		set(patata, 0.5) !> heremsg(2);
+
+rules Graph:
+	iscebolla == heremsg(3) ?
+		set(iscebolla, true), heregraph(3), set(iscebolla, heremsg(3));
+

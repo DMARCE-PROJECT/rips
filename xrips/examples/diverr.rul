@@ -1,0 +1,39 @@
+#!/bin/rips
+
+levels:
+	ALEV; #A level
+	B;
+	C soft;
+
+consts:
+	BadZ int = 2/0;
+	BadF float = 3.0/0.0;
+
+vars:
+	numf float = 4.0;
+	badf float = 5.0/0.0;
+	z int = 30;
+	badz int = 6/0;
+
+rules Msg:
+	true ?
+		set(numf, 7.0/0.0);
+	true ?
+		set(badf, 8.0);
+	true ?
+		set(badz, 9/0);
+	true ?
+		set(badz, badz/0);
+	true ?
+		set(badf, badf/0.0);
+	true ?
+		set(z, 2);
+	true ?
+		True(badz, badf, z, numf);
+	true ?
+		True(BadZ, BadF);
+	true?
+		trigger(B), trigger(C);
+
+
+

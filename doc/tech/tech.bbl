@@ -1,0 +1,60 @@
+\begin{thebibliography}{10}
+
+\bibitem{rips}
+F.~Martín, J.~M. Guerrero, E.~Soriano, G.~Guardiola, J.~M. Vega, and F.~J.
+  Rodríguez, ``Towards a robotic intrusion prevention system: Combining
+  security and safety in cognitive social robots,'' {\em NA}, 2023.
+
+\bibitem{9474424}
+A.~Nordmann, R.~Lange, and F.~M. Rico, ``System modes - digestible system
+  (re-)configuration for robotics,'' in {\em 2021 IEEE/ACM 3rd International
+  Workshop on Robotics Software Engineering (RoSE)}, pp.~19--24, 2021.
+
+\bibitem{rtps-doc}
+{O}{M}{G}, ``The real-time publish-subscribe protocol (rtps) dds
+  interoperability wire protocol specification.''
+
+\bibitem{fastdds-doc}
+e{P}rosima, ``Fast dds documentation.''
+
+\bibitem{go}
+Google, ``go programming language hompage.''
+\newblock \\ \url{https://go.dev}.
+
+\bibitem{ros2}
+S.~Macenski, T.~Foote, B.~Gerkey, C.~Lalancette, and W.~Woodall, ``Robot
+  operating system 2: Design, architecture, and uses in the wild,'' {\em
+  Science Robotics}, vol.~7, no.~66, p.~eabm6074, 2022.
+
+\bibitem{lexhack}
+wikipedia, ``The lexer hack.''
+\newblock \\ \url{https://en.wikipedia.org/wiki/Lexer_hack}.
+
+\bibitem{pratt}
+V.~R. Pratt, ``Top down operator precedence,'' in {\em Proceedings of the 1st
+  annual ACM SIGACT-SIGPLAN symposium on Principles of programming languages},
+  pp.~41--51, 1973.
+
+\bibitem{dijkstra1961algol}
+E.~W. Dijkstra, ``Algol 60 translation: An algol 60 translator for the x1 and
+  making a translator for algol 60,'' {\em Stichting Mathematisch Centrum.
+  Rekenafdeling}, no.~MR 34/61, 1961.
+
+\bibitem{richards1981bcpl}
+M.~Richards and C.~Whitby-Strevens, {\em BCPL: the language and its compiler}.
+\newblock Cambridge University Press, 1981.
+
+\bibitem{exprprob}
+wikipedia, ``The expression problem.''
+\newblock \\ \url{https://en.wikipedia.org/wiki/Expression_problem}.
+
+\bibitem{goyara}
+kgwinnup, ``pure go yara implementation.''
+\newblock \\ \url{https://github.com/kgwinnup/go-yara}.
+
+\bibitem{aho2007compilers}
+A.~V. Aho, R.~Sethi, and J.~D. Ullman, {\em Compilers: principles, techniques,
+  and tools}, vol.~2.
+\newblock Addison-wesley Reading, 2007.
+
+\end{thebibliography}

@@ -1,0 +1,20 @@
+#!/bin/rips
+
+levels:
+	ALEV; #A level
+	B;
+	C soft;
+
+consts:
+	regexp string =".*";
+
+vars:
+	ismatch bool = false || false;
+
+rules Msg:
+	 topicmatches(regexp) ?
+		set(ismatch, true);
+	ismatch?
+		True("match match") => trigger(B);
+	false?
+		trigger(C);

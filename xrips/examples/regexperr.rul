@@ -1,0 +1,17 @@
+#!/bin/rips
+
+levels:
+	ALEV; #A level
+	B;
+	C soft;
+
+consts:
+
+vars:
+	ismatch bool = false || false;
+	regexp string =".*";
+
+
+rules Msg:
+	 topicmatches(regexp) ?
+		true → set(ismatch, true);

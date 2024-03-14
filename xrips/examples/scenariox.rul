@@ -1,0 +1,32 @@
+levels:
+
+	__DEFAULT__;
+	COMPROMISED;
+	HALT;
+
+consts:
+
+vars:
+	isstdstring bool = false;
+	isrcl bool = false;
+
+rules Msg:
+
+	msgtypein("rcl_interfaces") ?
+		set(isrcl, true);
+
+	msgsubtype("std_msgs","String") ?
+		set(isstdstring, true);
+
+	!isrcl && !isstdstring ?
+		trigger(COMPROMISED);
+		
+	true ?
+		set(isrcl, false),
+		set(isstdstring, false);
+
+	# avoid not used error
+	false ? 
+		trigger(HALT);
+	
+

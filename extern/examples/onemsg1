@@ -1,0 +1,184 @@
+---
+event: message
+fromtopic: /turtle1/pose
+msg:
+  x: 5.994543075561523
+  y: 3.1328210830688477
+  theta: 1.684814691543579
+  linear_velocity: 0.0
+  angular_velocity: 0.0
+
+rawmsg: |
+  AAEAAEzTv0AkgEhAAqjX
+  PwAAAAAAAAAA
+
+context:
+  nodes:
+    - node: rips
+      gids:
+        - 01.0f.46.e5.24.28.1e.a1.01.00.00.00.00.00.04.03.00.00.00.00.00.00.00.00
+        - 01.0f.46.e5.24.28.1e.a1.01.00.00.00.00.00.03.03.00.00.00.00.00.00.00.00
+      services:
+        - service: /rips/describe_parameters
+          params:
+            - rcl_interfaces/srv/DescribeParameters
+        - service: /rips/get_parameter_types
+          params:
+            - rcl_interfaces/srv/GetParameterTypes
+        - service: /rips/get_parameters
+          params:
+            - rcl_interfaces/srv/GetParameters
+        - service: /rips/list_parameters
+          params:
+            - rcl_interfaces/srv/ListParameters
+        - service: /rips/set_parameters
+          params:
+            - rcl_interfaces/srv/SetParameters
+        - service: /rips/set_parameters_atomically
+          params:
+            - rcl_interfaces/srv/SetParametersAtomically
+    - node: teleop_turtle
+      gids:
+        - 01.0f.46.e5.94.27.0a.8b.01.00.00.00.00.00.10.03.00.00.00.00.00.00.00.00
+        - 01.0f.46.e5.94.27.0a.8b.01.00.00.00.00.00.11.04.00.00.00.00.00.00.00.00
+        - 01.0f.46.e5.94.27.0a.8b.01.00.00.00.00.00.03.03.00.00.00.00.00.00.00.00
+        - 01.0f.46.e5.94.27.0a.8b.01.00.00.00.00.00.12.03.00.00.00.00.00.00.00.00
+        - 01.0f.46.e5.94.27.0a.8b.01.00.00.00.00.00.19.04.00.00.00.00.00.00.00.00
+        - 01.0f.46.e5.94.27.0a.8b.01.00.00.00.00.00.1a.04.00.00.00.00.00.00.00.00
+      services:
+        - service: /teleop_turtle/describe_parameters
+          params:
+            - rcl_interfaces/srv/DescribeParameters
+        - service: /teleop_turtle/get_parameter_types
+          params:
+            - rcl_interfaces/srv/GetParameterTypes
+        - service: /teleop_turtle/get_parameters
+          params:
+            - rcl_interfaces/srv/GetParameters
+        - service: /teleop_turtle/list_parameters
+          params:
+            - rcl_interfaces/srv/ListParameters
+        - service: /teleop_turtle/set_parameters
+          params:
+            - rcl_interfaces/srv/SetParameters
+        - service: /teleop_turtle/set_parameters_atomically
+          params:
+            - rcl_interfaces/srv/SetParametersAtomically
+    - node: turtlesim
+      gids:
+        - 01.0f.46.e5.95.27.d6.13.01.00.00.00.00.00.10.03.00.00.00.00.00.00.00.00
+        - 01.0f.46.e5.95.27.d6.13.01.00.00.00.00.00.11.04.00.00.00.00.00.00.00.00
+        - 01.0f.46.e5.95.27.d6.13.01.00.00.00.00.00.1a.04.00.00.00.00.00.00.00.00
+        - 01.0f.46.e5.95.27.d6.13.01.00.00.00.00.00.03.03.00.00.00.00.00.00.00.00
+        - 01.0f.46.e5.95.27.d6.13.01.00.00.00.00.00.1b.04.00.00.00.00.00.00.00.00
+        - 01.0f.46.e5.95.27.d6.13.01.00.00.00.00.00.1d.03.00.00.00.00.00.00.00.00
+        - 01.0f.46.e5.95.27.d6.13.01.00.00.00.00.00.1c.03.00.00.00.00.00.00.00.00
+        - 01.0f.46.e5.95.27.d6.13.01.00.00.00.00.00.2a.03.00.00.00.00.00.00.00.00
+        - 01.0f.46.e5.95.27.d6.13.01.00.00.00.00.00.2b.03.00.00.00.00.00.00.00.00
+      services:
+        - service: /clear
+          params:
+            - std_srvs/srv/Empty
+        - service: /kill
+          params:
+            - turtlesim/srv/Kill
+        - service: /reset
+          params:
+            - std_srvs/srv/Empty
+        - service: /spawn
+          params:
+            - turtlesim/srv/Spawn
+        - service: /turtle1/rotate_absolute/_action/cancel_goal
+          params:
+            - action_msgs/srv/CancelGoal
+        - service: /turtle1/rotate_absolute/_action/get_result
+          params:
+            - turtlesim/action/RotateAbsolute_GetResult
+        - service: /turtle1/rotate_absolute/_action/send_goal
+          params:
+            - turtlesim/action/RotateAbsolute_SendGoal
+        - service: /turtle1/set_pen
+          params:
+            - turtlesim/srv/SetPen
+        - service: /turtle1/teleport_absolute
+          params:
+            - turtlesim/srv/TeleportAbsolute
+        - service: /turtle1/teleport_relative
+          params:
+            - turtlesim/srv/TeleportRelative
+        - service: /turtlesim/describe_parameters
+          params:
+            - rcl_interfaces/srv/DescribeParameters
+        - service: /turtlesim/get_parameter_types
+          params:
+            - rcl_interfaces/srv/GetParameterTypes
+        - service: /turtlesim/get_parameters
+          params:
+            - rcl_interfaces/srv/GetParameters
+        - service: /turtlesim/list_parameters
+          params:
+            - rcl_interfaces/srv/ListParameters
+        - service: /turtlesim/set_parameters
+          params:
+            - rcl_interfaces/srv/SetParameters
+        - service: /turtlesim/set_parameters_atomically
+          params:
+            - rcl_interfaces/srv/SetParametersAtomically
+  topics:
+    - topic: /parameter_events
+      parameters:
+        - rcl_interfaces/msg/ParameterEvent
+      publishers:
+        - rips
+        - teleop_turtle
+        - turtlesim
+      subscribers:
+        - teleop_turtle
+        - turtlesim
+        - turtlesim
+    - topic: /rosout
+      parameters:
+        - rcl_interfaces/msg/Log
+      publishers:
+        - rips
+        - teleop_turtle
+        - turtlesim
+      subscribers:
+        - ~
+    - topic: /turtle1/cmd_vel
+      parameters:
+        - geometry_msgs/msg/Twist
+      publishers:
+        - teleop_turtle
+      subscribers:
+        - turtlesim
+    - topic: /turtle1/color_sensor
+      parameters:
+        - turtlesim/msg/Color
+      publishers:
+        - turtlesim
+      subscribers:
+        - ~
+    - topic: /turtle1/pose
+      parameters:
+        - turtlesim/msg/Pose
+      publishers:
+        - turtlesim
+      subscribers:
+        - ~
+    - topic: /turtle1/rotate_absolute/_action/feedback
+      parameters:
+        - turtlesim/action/RotateAbsolute_FeedbackMessage
+      publishers:
+        - turtlesim
+      subscribers:
+        - teleop_turtle
+    - topic: /turtle1/rotate_absolute/_action/status
+      parameters:
+        - action_msgs/msg/GoalStatusArray
+      publishers:
+        - turtlesim
+      subscribers:
+        - teleop_turtle
+...
+

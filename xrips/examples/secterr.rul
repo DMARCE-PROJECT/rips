@@ -1,0 +1,21 @@
+#!/bin/rips
+
+levels:
+	ALEV; #A level
+	B;
+	C soft;
+
+vars:
+	isseen bool = false;
+
+rules Msg:
+	true ?
+		set(isseen, publishersinclude(Msg));
+	Msg ?
+		set(isseen, publishersinclude());
+	true ?
+		set(isseen, isseen);
+	true?
+		trigger(B), trigger(C);
+
+

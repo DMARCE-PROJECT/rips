@@ -1,0 +1,25 @@
+#!../../rips/rips -r ../.. -s /tmp/sock.rips ./extern/examples/scripts
+
+#can be executed in this directory with:
+#	./countdivzero.rul
+#and tested with:
+#		 nc -UN /tmp/sock.rips < ../../extern/examples/msg1
+
+levels:
+	ALEV; #A level
+	B;
+	C soft;
+vars:
+	another int = 0;
+	x int = 1;
+
+rules Msg:
+	 true ?
+		set(x, 0);
+	 true ?
+		set(another, another/x);
+	false ?
+		True(another);
+	true?
+		trigger(B), trigger(C);
+## comment eof

@@ -1,0 +1,24 @@
+#!/bin/rips
+
+levels:
+	ALEV; #A level
+	B;
+	C soft;
+
+vars:
+	isseen bool = false;
+	cebolla string = "hola";
+	x int = 16 + 1 - 1;
+	num int = 16 + x - 1;
+
+rules Msg:
+	 false ?
+		set(isseen, true), set(isseen, isseen);
+	!(cebolla > "aaa") ?	#only this is not dead, but still false
+		set(isseen, true) => set(num, 0xa&((7*5)/3)), set(cebolla, cebolla), set(num, num);
+	true < false ?
+		set(isseen, true);
+	true < false || "bbb" < "aa" ?
+		set(isseen, true);
+	((3 + 5)&0xff)  > 0xaa || "bbb" < "aa" ?
+		set(isseen, true);

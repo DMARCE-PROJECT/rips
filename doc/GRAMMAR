@@ -1,0 +1,145 @@
+####################NAIVE GRAMMAR###############
+###############To be converted to LL1###############
+############ EXPR is done with a pratt parser, not here ###
+
+//number of each is a semantic check
+//can be done in the down pass (new section...)
+PROG :=	'levels' ':' LEVELDECLS PROG
+		'vars' ':' VARDECLS PROG
+		'rules' ID ':' ACTIONDECLS PROG
+		ε
+
+CONSTDECLS :=	ID ID '=' EXPR ';' CONSTDECLS
+			ε
+
+VARDECLS :=	ID ID '=' EXPR ';' VARDECLS
+			ε
+
+CONSTDECLS :=	ID ID '=' EXPR ';' CONSTDECLS
+			ε
+
+LEVELDECLS := 	ID ';' LEVELDECLS
+			 ID 'soft' ';' LEVELDECLS
+			ε
+
+
+ACTIONDECLS :=	EXPR '?' RULER ';' ACTIONDECLS
+			ε
+
+RULER :=	ACTION '=>' RULER
+		ACTION '!>' RULER
+		ACTION ',' RULER
+		ACTION
+
+ACTION :=	ID '=' EXPR
+			ID '(' ARGS ')'
+			ID '(' ')'
+ARGS :=	EXPR ',' ARGS
+		EXPR
+=========================
+
+RULER :=	ACTION ACTSEQ
+
+ACTSEQ :=	'=>' RULER
+			'!>' RULER
+			',' RULER
+			ε
+=========================
+ACTION := ID POST
+
+POST :=	'=' EXPR
+		'(' OPTARGS
+OPTARGS :=	')'
+			ARGS ')'
+
+############ FINAL GRAMMAR #########
+PROG :=	'levels' ':' LEVELDECLS'  PROG
+		'vars' ':' VARDECLS PROG
+		'rules' ID ':' ACTIONDECLS PROG
+		ε
+
+CONSTDECLS :=	ID ID '=' EXPR ';' CONSTDECLS
+			ε
+
+VARDECLS :=	ID ID '=' EXPR ';' VARDECLS
+			ε
+
+LEVELDECLS := 	ID ATTROPT ';' LEVELDECLS
+			ε
+
+ATTROPT :=	'soft'
+			ε
+
+ACTIONDECLS :=	EXPR '?' RULER ';' ACTIONDECLS
+			ε
+
+RULER :=	ACTION ACTSEQ
+
+ACTSEQ :=	'=>' RULER
+			'!>' RULER
+			',' RULER
+			ε
+
+
+--------------------------
+ACTION can be EXPR and check for SFCall in top level in the typecheck.
+There is no need for what comes next:
+
+--------------------------
+ACTION := ID POST
+
+POST :=	'=' EXPR
+		'(' OPTARGS
+
+OPTARGS :=	')'
+			ARGS ')'
+
+ARGS :=	EXPR ',' ARGS
+		EXPR
+--------------------------
+############ FINAL GRAMMAR IMPLEMENTED#########
+PROG :=	'levels' ':' LEVELDECLS'  PROG
+		'vars' ':' VARDECLS PROG
+		'rules' ID ':' ACTIONDECLS PROG
+		ε
+
+CONSTDECLS :=	ID ID '=' EXPR ';' CONSTDECLS
+			ε
+
+VARDECLS :=	ID ID '=' EXPR ';' VARDECLS
+			ε
+
+LEVELDECLS := 	ID ATTROPT ';' LEVELDECLS
+			ε
+
+ATTROPT :=	'soft'
+			ε
+
+ACTIONDECLS :=	EXPR '?' RULER ';' ACTIONDECLS
+			ε
+
+RULER :=	EXPR ACTSEQ
+
+ACTSEQ :=	'=>' RULER
+			'!>' RULER
+			',' RULER
+			ε
+
+#################Expression grammar (for PRATT)
+EXPR := '!' EXPR |
+         '~' EXPR |
+         '(' EXPR ')' |
+         EXPR '+' EXPR |
+         EXPR '-' EXPR |
+         EXPR '/' EXPR |
+         EXPR '*' EXPR |
+         EXPR '%' EXPR |
+         EXPR '^' EXPR |
+         EXPR '||' EXPR |
+         EXPR '&&' EXPR |
+         EXPR '>' EXPR |
+         EXPR '>=' EXPR |
+         EXPR '<' EXPR |
+         EXPR '<=' EXPR |
+         EXPR '|' EXPR |
+         EXPR '&' EXPR |

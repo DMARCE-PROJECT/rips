@@ -1,0 +1,128 @@
+- alert levels:
+
+• NORMAL
+• soft ALERT
+• COMPROMISED
+• HALT
+
+
+- Predefined Global variables
+	Time, Level, Uptime...
+
+- Events:
+
+• Message: Messages delivered to a topic.
+• Graph: Changes in the ROS2 graph.
+• External : External events.
+
+- Actions:
+
+set(var, value)
+	declaration/update
+alert(string)
+	builtin procedure call
+exec(path)
+	builtin procedure call
+trigger(level)
+	builtin call/sets variable
+
+####################################
+Expression builtins associated to events.
+• Message
+	msgsubtype(msg:string, submsg:string)
+	msgtypein(msgs: set of string)
+	payload(path:string)
+	plugin(id:string)
+	publishercount(min:int, max:int)
+	publishers(pubs: set of string)
+	publishersinclude(pubs:set of string)
+	senderin(senders:set of string)
+	subscribercount(min:int, max:int)	
+	subscribers(subs: set of string)
+	subscribersinclude(subs:set of string)
+	topicin(topics:set of string)
+	topicmatches(regex:string)
+
+• Graph: Changes in the ROS2 graph.
+	nodes(n: set of string)
+	nodesinclude(n: set of string)
+	nodecount(min:int, max:int)
+	service(node:string, serv:string)
+	servicecount(node string, min:int, max:int)
+	services(node string, s:set of string)
+	servicesinclude(node string, s:set of string)
+	topiccount(min:int, max:int)
+	topics(topics:set of string)
+	topicsinclude(topics:set of string)
+	topicpublishercount(topic:string, min:int, max:int)
+	topicpublishers(topic:string, nodes:set of string)
+	topicpublishersinclude(topic:string, nodes:set of string)
+	topicsubscribercount(topic:string, min:int, max:int)
+	topicsubscribers(topic:string, nodes:set of string)
+	topicsubscribersinclude(topic:string, nodes:set of string)
+
+• External : External events.
+	idsalert(alert:string)
+	signal(sig:string)
+-----------------------My interpretation
+
+- Declared variables
+
+var Patata int	//string float, no need for sets, variadic functions, f(x: string...)
+
+- Regions for kinds of messages, expressions can be placed instead of actions, but
+they must be boolean (like guards). Actions are boolean expressions (success/fail).
+The type of an expression is
+a tuple (typeval, typeact). Both have to be the same or compatible. 
+A topic region expression (typeact = Topic)
+may only have topic actions in its supexpressions (we have to carefully define the types
+and they cannot be mixed), some are universal (typeact = Universal)
+
+Correspondance
+→ and !→ are && and ||
+; is ,
+□ is ;
+
+Example
+
+actions Msg:
+	Level > 3 && trigger(COMPROMISED)  || set(Patata, 8), msgs("xxx", "yyy") && set(Patata, Patata+1);
+
+
+
+Ojo:
+	right-to-left precedence  -> left to right evaluation (shorted), so evaluate left first.
+	a || b || c
+	is
+	(a || b) || c
+
+The treee is:
+	    /\
+	   ^  c	
+	a b
+
+--------------
+#!/bin/rips
+
+levels:
+	A;
+	B	soft;
+	C;
+vars:
+	patata int = 0.0;
+	cebolla string = "hola";
+	iscebolla bool = false;
+	zanahoria float = 18;
+rules Msg:
+	expr ? 
+		action => action => action !> action;
+	(z > 7 && c > "hola") ? 
+		action => action => action !> action;
+rules Graph:
+	expr ? 
+		action => action, action !> action;
+	expr ? 
+		action => action, action !> action;
+
+#An action can be f(expr,....) or  a = expr (function call or assignment).
+#An expression is a boolean expresion containing float, int, string or bool subexpressions.

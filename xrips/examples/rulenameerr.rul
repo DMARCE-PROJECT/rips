@@ -1,0 +1,18 @@
+#!/bin/rips
+
+levels:
+	ALEV; #A level
+	B;
+	C soft;
+consts:
+	potato int= 12;
+vars:
+	s string = "";
+	nmsg int = 0;
+	another int = 0;
+
+rules Msg:
+	 true ?
+		set(CurrRule, nmsg + 1), alert(CurrRule);
+	 true ?
+		set(another, potato + 1), alert(CurrRule);

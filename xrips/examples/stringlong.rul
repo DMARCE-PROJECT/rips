@@ -1,0 +1,36 @@
+levels:
+	__DEFAULT__;
+	ALERT soft;
+	COMPROMISED;
+	HALT;
+
+consts:
+	
+	MaxNodes int = 5; # rips and 4 participants
+	LongStr string = "
+I am a long string";
+	LongStr2 string = ""+
+"\tI am a \x0dmultiline \x0a string %s %% 
+\twith and\nan ñ\xc3\xb1\"
+\tmore than one line ";
+	Str1 string = "%";
+	Str2 string = "\x25";
+
+vars:
+	vlevel int = __DEFAULT__;
+	
+rules Msg:
+
+
+	true?
+		True(levelname(CurrLevel));
+	true?
+		set(vlevel, vlevel+2), True(LongStr), True(vlevel), True(LongStr2), True(Str1 == Str2);
+	true?
+		trigger(ALERT);
+	true?
+		True(CurrLevel == ALERT, CurrLevel, CurrLevel != ALERT, CurrLevel);
+	false?
+		trigger(ALERT), 
+		trigger(COMPROMISED), 
+		trigger(HALT);

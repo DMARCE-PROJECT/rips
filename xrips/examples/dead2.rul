@@ -1,0 +1,58 @@
+#!/bin/rips
+
+levels:
+	ALEV; #A level
+	B;
+	C soft;
+
+vars:
+	isseen bool = false;
+	num int = 16 + 1 - 1;
+	numf float = 3.0;
+	numf2 float = 3.0;
+	z int = 30;
+
+rules Msg:
+	true ?
+		set(isseen, isseen);
+	true ?
+		set(isseen, false && (num > 12));
+	true ?
+		set(isseen, true || (num > 12));
+	true ?
+		set(isseen, true && (num > 12));
+	true ?
+		set(isseen, false || (num > 12));
+	true ?
+		set(num, z + 0);
+	true ?
+		set(num, (z - 0));
+	true ?
+		set(num, z | 0);
+	true ?
+		set(num, 0 + z);
+	true ?
+		set(z, (0 - z)+1);
+	true ?
+		set(numf, (0.0 - numf2)+1.0);
+	true ?
+		set(numf2, (0.0 + numf2)+1.0);
+	true ?
+		set(numf, (numf2 - 0.0)+1.0);
+	true ?
+		set(numf2, 1.0+(0.0 + numf2));
+	true ?
+		True(numf);
+	true ?
+		set(num, 0 | z);
+	true ?
+		set(num, -1 & z);
+	true ?
+		set(num, z & -1);
+	true ?
+		set(isseen, publishersinclude());
+	true?
+		trigger(B), trigger(C);
+
+
+

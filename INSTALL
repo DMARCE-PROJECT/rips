@@ -1,0 +1,48 @@
+- Install 
+	go version #should report > 1.20
+	go mod tidy
+	go test ./...
+	cd rips
+	go build
+	#The rips command will receive a file for the
+	#	program (see the examples directory in xrips/examples
+	#	the ones with names not in *err.rul)
+	#	and a fifo with yaml messages.
+
+- How to test:
+
+	+ Regular way:	
+		go tests ./...
+	+ Inside xrips, fuzzing:	
+		cd xrips
+		go test -fuzz=FuzzRipsSmall -fuzztime 50s
+		go test -fuzz=FuzzRipsBigger0 -fuzztime 50s
+		go test -fuzz=FuzzRipsBigger1 -fuzztime 50s
+		go test -fuzz=FuzzRipsBigger2 -fuzztime 50s
+		go test -fuzz=FuzzRipsBigger3 -fuzztime 50s
+		go test -fuzz=FuzzRipsBigger4 -fuzztime 50s
+		go test -fuzz=FuzzRipsBigger5 -fuzztime 50s
+		go test -fuzz=FuzzRipsDead -fuzztime 50s
+	
+	+ Inspect errors (runs all xrips/examples/*err.rul):
+		cd xrips
+		go test -run=TestAllErr -v
+	+ Regress test errors outputs (runs all xrips/examples/*err.rul):	
+		cd xrips
+		go test -run=TestErrOut -v
+		#the good output is in xrips/errouts/okout.out
+- Example:
+	cd rips
+	go build
+	mkdir ../gen
+	# transpiling and compiling
+	./rips ../doc/example.rul -c  ../extern/examples/scripts > ../gen/gen.go
+	cd ../gen
+	go build
+	./gen  /tmp/sock.777 ../extern/examples/scripts
+	# alternatively (interpret instead of transpiling an compiling)
+	./rips ../rips/doc/tech/src/example.rul /tmp/sock.777  ../extern/examples/scripts
+
+	#Send some messages to either
+	cat ../extern/examples/msg1  | nc -UN /tmp/sock.777
+	

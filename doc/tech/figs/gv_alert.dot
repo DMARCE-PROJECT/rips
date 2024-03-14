@@ -1,0 +1,15 @@
+digraph finite_state_machine {
+	rankdir=LR;
+	size="8,5"
+	node [shape = doublecircle]; "A|0";
+	node [shape = plaintext]; "start";
+	node [fontcolor=black shape = circle];
+	"start" -> "A|0" [ label = "" ];
+	"A|0" -> "B|1" [ label = "trigger(B)" ];
+	"A|0" -> "C|2" [ label = "trigger(C)" ];
+	"A|0" -> "D|3" [ label = "trigger(D)" ];
+	"B|1" -> "C|2" [ label = "trigger(C)" ];
+	"B|1" -> "D|3" [ label = "trigger(D)" ];
+	"C|2" -> "D|3" [ label = "trigger(D)" ];
+	"C|2" -> "B|1" [ label = "trigger(B), C is soft", color=blue ];
+}

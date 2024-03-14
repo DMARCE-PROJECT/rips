@@ -1,0 +1,17 @@
+#!/bin/rips
+
+levels:
+	ALEV; #A level
+	B;
+	C soft;
+consts:
+	potato int= 12;
+vars:
+	nmsg int = 0;
+	another int = 0;
+
+rules Ms:
+	 true ?
+		set(nmsg, nmsg + 1);
+	 true ?
+		set(another, potato + 1);

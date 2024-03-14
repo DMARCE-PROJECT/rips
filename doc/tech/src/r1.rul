@@ -1,0 +1,60 @@
+levels:
+
+	__DEFAULT__;
+	ALERT soft;
+	COMPROMISED;
+	HALT;
+
+consts:
+	
+	MaxNodes int = 5; # rips and 4 participants
+
+vars:
+
+	descalated int = 0;
+
+rules Graph:
+
+	! nodecount(1, MaxNodes) && CurrLevel == __DEFAULT__ ?
+		alert("detected more than 4 nodes: too many nodes, entering level ALERT"),
+		trigger(ALERT);
+
+	nodecount(1, MaxNodes) && CurrLevel == ALERT ?
+		set(descalated, descalated+1),
+		alert("returning to default mode"),
+		trigger(__DEFAULT__);
+
+	descalated > 5 && (CurrLevel == ALERT || CurrLevel == __DEFAULT__)?
+		alert("too many transitions to alert"),
+		exec("/usr/bin/spd-say", "too many transitions to alert"),
+		trigger(COMPROMISED);
+
+	# should be: rips, monitor & recorder
+	! topicsubscribercount("/videocorridor", 0, 3) ?
+		alert("videocorridor: too many subscribers"), 
+		trigger(COMPROMISED); 
+
+	# should be: corridorcamera
+	! topicpublishercount("/videocorridor", 0, 1) ?
+		alert("videocorridor: too many publishers"),
+		trigger(COMPROMISED);
+
+	# should be: rips & recorder
+	! topicsubscribercount("/videooffice", 0, 2) ?
+		alert("videooffice: too many subscribers"),
+		trigger(COMPROMISED); 
+
+	# should be: officecamera
+	! topicpublishercount("/videooffice", 0, 1) ?
+		alert("videooffice: too many publishers"),
+		trigger(COMPROMISED);
+
+rules Msg:
+
+	topicmatches("/videocorridor") && ! publishers("corridorcamera") && CurrLevel != HALT ?
+		alert("unauthorized publisher in corridorcamera"),
+		exec("/usr/bin/spd-say", "red code the system is totally compromised, halting the system"),
+		exec("/bin/sleep", "5"),
+		trigger(HALT);
+
+

@@ -1,0 +1,24 @@
+#!/bin/rips
+
+levels:
+	ALEV; #A level
+	B;
+	C soft;
+
+vars:
+	patata int = 0;
+	cebolla string = "zhola";
+	iscebolla bool = false;
+	zanahoria float = 18.0;
+
+rules Msg:
+	cebolla > "hola" ?
+		True("time", Time), alert("hola");
+	cebolla > "hola" ?
+		True("uptime", Uptime), set(patata, Time), True("patata", patata);
+	cebolla > "hola" ?
+		set(patata, 666), True("currlevel", CurrLevel);
+	1 < 2 ?
+		trigger(B);
+	Uptime > 0 ?
+		exec("/usr/bin/ls", "-l") => alert("good");

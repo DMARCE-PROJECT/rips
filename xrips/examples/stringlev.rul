@@ -1,0 +1,20 @@
+levels:
+	__DEFAULT__;
+	ALERT soft;
+	COMPROMISED;
+	HALT;
+
+consts:
+	
+	MaxNodes int = 5; # rips and 4 participants
+
+	
+rules Msg:
+
+
+	true?
+		True(levelname(CurrLevel));
+	false?
+		trigger(ALERT), 
+		trigger(COMPROMISED), 
+		trigger(HALT);

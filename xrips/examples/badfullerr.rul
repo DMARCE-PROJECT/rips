@@ -1,0 +1,445 @@
+#!/bin/rips
+
+levels:
+	ALEV; #A level
+	B;
+	C soft;
+consts:
+	potato int= 12;
+vars:
+	nmsg int = 0;
+	another int = 0;
+
+rules Msg:
+	 true ?
+		set(nmsg, nmsg + 1);
+	 true ?
+		set(another, potato + 1);
+	false?
+		set(nmsg, nmsg), set(another, another);
+	true?
+		trigger(B), trigger(C);
+## comment eof#!/bin/rips
+
+levels:
+	ALEV; #A level
+	B;
+	C soft;
+consts:
+	nmsg int = 0;
+	potato int= 12;
+vars:
+	another int = 0;
+
+rules Msg:
+	 true ?
+		set(nmsg, nmsg + 1);
+	 true ?
+		set(another, potato + 1);
+#!/bin/rips
+
+levels:
+	ALEV; #A level
+	B;
+	C soft;
+consts:
+	potato int= 12;
+vars:
+	nmsg int = 0;
+	another int = 0;
+	msg string = "";
+
+rules Msg:
+	 true ?
+		set(nmsg, nmsg + 1);
+	 true ?
+		set(another, potato + 1) => set(msg, msg + "xxx");
+#!/bin/rips
+
+levels:
+	ALEV; #A level
+	B;
+	C soft;
+
+vars:
+	cebolla string = "hola";
+	isseen bool = false;
+	num int = 16 + 1 - 1;
+
+rules Msg:
+	 false ?
+		set(isseen, true);
+	!(cebolla > "aaa") ?	#also dead
+		set(isseen, true) => set(num, 0xa&((7*5)/3)), set(isseen, isseen), set(cebolla, cebolla);
+	true < false ?
+		set(isseen, true);
+	true < false || "bbb" < "aa" ?
+		set(isseen, true);
+	((3 + 5)&0xff)  > 0xaa || "bbb" < "aa" ?
+		set(isseen, true), set(num, num);
+	true?
+		trigger(B), trigger(C);
+#!/bin/rips
+
+levels:
+	ALEV; #A level
+	B;
+	C soft;
+
+vars:
+	isseen bool = false;
+	cebolla string = "hola";
+	num int = 16 + 1 - 1;
+	z int = 30;
+
+rules Msg:
+	true ?
+		set(isseen, isseen);
+	true ?
+		set(isseen, false && (num > 12));
+	true ?
+		set(isseen, true || (num > 12));
+	true ?
+		set(isseen, true && (num > 12));
+	true ?
+		set(isseen, false || (num > 12));
+	true ?
+		set(num, z + 0);
+	true ?
+		set(num, (z - 0));
+	true ?
+		set(num, z | 0);
+	true ?
+		set(num, 0 + z);
+	true ?
+		set(num, (0 - z));
+	true ?
+		set(num, 0 | z);
+	true ?
+		set(num, -1 & z);
+	true ?
+		set(num, z & -1);
+
+#!/bin/rips
+
+levels:
+	ALEV; #A level
+	B;
+	C soft;
+
+vars:
+	ismatch bool = set(false);
+	ttt bool = true;
+
+rules Msg:
+	 topicmatches("RULE") ?
+		set(ismatch, ttt);
+#!/bin/rips
+
+levels:
+	ALEV; #A level
+	B;
+	C soft;
+
+vars:
+	ismatch bool = false(false);
+	ttt bool = true;
+
+rules Msg:
+	 topicmatches("RULE") ?
+		set(ismatch, ttt);
+#!/bin/rips
+
+levels:
+	ALEV; #A level
+	B;
+	C soft;
+
+rules External:
+	idsalert("testalert") ?
+		True("alert");
+	false?
+		trigger(B), trigger(C);
+## comment eof#!/bin/rips
+
+levels:
+	ALEV; #A level
+	B;
+	C soft;
+
+vars:
+	isseen bool = false;
+	cebolla string = "hola";
+	x int = 16 + 1 - 1;
+	num int = 16 + x - 1;
+
+rules Msg:
+	 false ?
+		set(isseen, true), set(isseen, isseen);
+	!(cebolla > "aaa") ?	#only this is not dead, but still false
+		set(isseen, true) => set(num, 0xa&((7*5)/3)), set(cebolla, cebolla), set(num, num);
+	true < false ?
+		set(isseen, true);
+	true < false || "bbb" < "aa" ?
+		set(isseen, true);
+	((3 + 5)&0xff)  > 0xaa || "bbb" < "aa" ?
+		set(isseen, true);
+#!/bin/rips
+
+levels:
+	ALEV; #A level
+	B;
+	C soft;
+consts:
+	potato int= 12;
+vars:
+	nmsg int = 0;
+	another int = 0;
+
+rules Ms:
+	 true ?
+		set(nmsg, nmsg + 1);
+	 true ?
+		set(another, potato + 1);
+#!/bin/rips
+
+levels:
+	ALEV; #A level
+	B;
+	C soft;
+
+vars:
+	ismatch bool = false  false;
+	ttt bool = true;
+
+rules Msg:
+	 topicmatches("RULE") ?
+		set(ismatch, ttt);
+#!/bin/rips
+
+levels:
+	ALEV; #A level
+	B;
+	C soft;
+
+vars:
+	ismatch bool = false || false;
+
+rules Msg:
+	 topicmatches("RULE") 
+		set(ismatch, true);
+	 topicmatches("RULE") ?
+		set(ismatch, true);
+#!/bin/rips
+
+levels:
+	ALEV; #A level
+	B;
+	C soft;
+
+vars:
+	ismatch  = false || false;
+
+rules Msg:
+	 topicmatches("RULE") ?
+		set(ismatch, true);
+#!/bin/rips
+
+levels:
+	ALEV; #A level
+	B;
+	C soft;
+
+consts:
+	regexp string =".*";
+
+vars:
+	ismatch bool = false || false;
+
+rules Msg:
+	 topicmatches(regexp) ?
+		set(ismatch, true);
+	ismatch?
+		True("match match");
+	false?
+		trigger(B), trigger(C);
+#!/bin/rips
+
+levels:
+	ALEV; #A level
+	B;
+	C soft;
+
+consts:
+
+vars:
+	ismatch bool = false || false;
+	regexp string =".*";
+
+
+rules Msg:
+	 topicmatches(regexp) ?
+		true → set(ismatch, true);
+#!/bin/rips
+
+levels:
+	ALEV; #A level
+	B;
+	C soft;
+consts:
+	potato int= 12;
+vars:
+	nmsg int = 0;
+	another int = 0;
+
+rules Msg:
+	 true ?
+		set(nmsg, nmsg + 1), alert(CurrRule);
+	 true ?
+		set(another, potato + 1), alert(CurrRule);
+#!/bin/rips
+
+levels:
+	ALEV; #A level
+	B;
+	C soft;
+consts:
+	potato int= 12;
+vars:
+	s string = "";
+	nmsg int = 0;
+	another int = 0;
+
+rules Msg:
+	 true ?
+		set(CurrRule, nmsg + 1), alert(CurrRule);
+	 true ?
+		set(another, potato + 1), alert(CurrRule);
+levels:
+	__DEFAULT__;
+	ALERT soft;
+	COMPROMISED;
+	HALT;
+
+consts:
+	
+	MaxNodes int = 5; # rips and 4 participants
+
+vars:
+
+rules Graph:
+
+	! nodecount(1, MaxNodes) && CurrLevel == __DEFAULT__ ?
+		trigger(ALERT);
+
+	nodecount(1, MaxNodes) && CurrLevel == ALERT ?
+		alert("Bad node count"), trigger(__DEFAULT__);
+
+	# should be: rips, monitor & recorder
+	! topicsubscribercount("videocorridor", 0, 3) ?
+		alert("videocorridor: too many subscribers"), 
+		trigger(COMPROMISED); 
+
+	# should be: corridorcamera
+	! topicpublishercount("videocorridor", 0, 1) ?
+		alert("videocorridor: too many publishers"),
+		trigger(COMPROMISED);
+
+	# should be: rips & recorder
+	! topicsubscribercount("videooffice", 0, 2) ?
+		alert("videooffice: too many subscribers"),
+		trigger(COMPROMISED); 
+
+	# should be: officecamera
+	! topicpublishercount("videooffice", 0, 1) ?
+		alert("videooffice: too many publishers"),
+		trigger(COMPROMISED);
+
+rules Msg:
+
+	topicmatches("videocorridor") && ! publishers("corridorcamera") ?
+		alert("unauthorized publisher in corridorcamera"),
+		exec("/usr/bin/spd-say", "red code the system is totally compromised, halting the system"),
+		trigger(HALT);
+
+
+#!/bin/rips
+
+levels Msg:
+	ALEV; #A level
+	B;
+	C soft;
+
+vars:
+	ismatch bool = false || false;
+
+rules Msg:
+	 topicmatches("RULE") ?
+		set(ismatch, true);
+#!/bin/rips
+
+levels:
+	ALEV; #A level
+	B;
+	C soft;
+vars:
+	nints int = 0;
+
+rules External:
+	signal("SIGUSR1") ?
+		set(nints, nints + 1);
+	nints > 2 ?
+		True(nints);
+	false?
+		trigger(B), trigger(C);
+## comment eof#!/bin/rips
+
+levels:
+	ALEV;
+	B; #A level
+	C soft;
+
+vars:
+	ismatch bool = false || false;
+
+rules Msg:
+	 topicmatches("RULE") ?
+		set(ismatch, true);
+	false?
+		set(ismatch, ismatch);
+	true?
+		trigger(B), trigger(C);
+#!/bin/rips
+
+levels:
+	ALEV; #A level
+	B;
+	C soft;
+
+vars:
+	ismatch bool = false || false;
+
+rules Msg:
+	 topicmatches("RULE") ?
+		set(ismatch, true)
+	 topicmatches("RULE") ?
+		set(true, true);
+#!/bin/rips
+
+levels:
+	ALEV; #A level
+	B;
+	C soft;
+
+vars:
+	ismatch bool = false false;
+
+rules Msg:
+	 topicmatches("RULE") ?
+		set(ismatch, true)
+		set(ismatch, true);
+	 topicmatches("RULE") ?
+		set(ismatch, true),
+		set(ismatch, true)
+	 topicmatches("RULE") ?
+		set(ismatch, true);

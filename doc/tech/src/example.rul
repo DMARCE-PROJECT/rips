@@ -1,0 +1,30 @@
+#!/bin/rips
+
+levels:
+	A; #A level
+	B;
+	C soft;
+	D;
+
+consts:
+	regexp string ="/pose.*";
+	current string = "fff";
+
+vars:
+	nmsg int = 0;
+	ngraphs int = 0;
+	ismatch bool = true;
+	lastrule string = "";
+
+rules Msg:
+	 "zzz" > current ?
+		set(nmsg, nmsg + 1), trigger(B);
+	 topicmatches(regexp) && nmsg > 3 ?
+		alert("topic matches") => set(ismatch, true) => set(lastrule, CurrRule);
+rules Graph:
+	 true ?
+		set(ngraphs, ngraphs + 1);
+	ngraphs > 10 && ismatch ?
+		alert("too many graphs after bad topic rule:"+lastrule), trigger(C);
+	ngraphs > 100 && ismatch ?
+		alert("alerted too much"), trigger(D);

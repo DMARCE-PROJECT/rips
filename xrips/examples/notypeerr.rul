@@ -1,0 +1,13 @@
+#!/bin/rips
+
+levels:
+	ALEV; #A level
+	B;
+	C soft;
+
+vars:
+	ismatch  = false || false;
+
+rules Msg:
+	 topicmatches("RULE") ?
+		set(ismatch, true);

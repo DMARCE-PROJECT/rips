@@ -1,0 +1,32 @@
+#!/bin/rips
+
+levels:
+	ALEV; #A level
+	B;
+	C soft;
+
+consts:
+	rama int = 18;
+
+vars:
+	patata int = 0;
+	cebolla string = "hola";
+	iscebolla bool = false;
+	zanahoria float = 18.0;
+
+
+#does not exist really (or is universal???)
+rules Msg:
+	cebolla > "hola" ?
+		set(iscebolla, true),
+		heremsg(3+rama);
+
+	(zanahoria > 7.0 && cebolla > "hola") ? 
+		gohere(1) =>
+		set(patata, 5) !> heremsg(2);
+
+#only graph
+rules Graph:
+	cebolla > "hola" ?
+		set(iscebolla, true), heregraph(3);
+

@@ -1,0 +1,13 @@
+#!/bin/rips
+
+levels:
+	ALEV; #A level
+	B;
+	C soft;
+
+rules External:
+	idsalert("testalert") ?
+		True("alert");
+	false?
+		trigger(B), trigger(C);
+## comment eof

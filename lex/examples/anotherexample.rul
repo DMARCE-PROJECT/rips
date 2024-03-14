@@ -1,0 +1,35 @@
+#!/bin/rips
+
+levels:
+	ALEV; #A level
+	B;
+	C soft;
+
+vars:
+	patata int = 0;
+	cebolla string = "zhola";
+	iscebolla bool = false;
+	zanahoria float = 18.0;
+
+rules Msg:
+	cebolla > "hola" ?
+		set(iscebolla, true),
+		True("hola", "bla bla");
+	cebolla > "hola" ?
+		False("ha") =>
+		True("should not see");
+	iscebolla ?
+		False("ra") !>
+		True("should see");
+	cebolla > "hola" ?
+		set(cebolla, "zaleluya"),
+		True(cebolla, "bla bla");
+	plugin("/usr/bin/ls") ?
+		set(cebolla, "zaleluya"),
+		True(cebolla, "bla bla");
+
+rules Graph:
+	cebolla > "hola" ?
+		set(iscebolla, true), False("aaa");
+
+

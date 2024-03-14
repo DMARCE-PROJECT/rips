@@ -1,0 +1,33 @@
+#!/bin/rips
+
+levels:
+	ALEV; #A level
+	B;
+	C soft;
+
+consts:
+	patata int = 0;
+	zanahoria float = 18.0;
+
+vars:
+	xxx int = 12;
+	cebolla string = "hola";
+	iscebolla bool = true;
+
+#here graph and message
+# this section is universal
+rules Msg:
+	xxx > patata && cebolla > "hola" && publishercount(0, 100) ?
+		set(iscebolla, true), trigger(C);
+
+	iscebolla && (zanahoria > 7.0 && cebolla > "hola") ? 
+		trigger(B) => set(xxx, 5) !> trigger(C),  set(cebolla, "aaa") ;
+
+#here only graph
+#this section is graph
+rules Graph:
+	cebolla > "hola" && nodecount(0, 100) ?
+		set(iscebolla, true), True(3);
+
+
+#rules External??

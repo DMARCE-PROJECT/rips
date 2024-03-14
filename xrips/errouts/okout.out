@@ -1,0 +1,70 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+examples/badfullerr.rul:25: declaring ALEV: already declared sym 'ALEV'
+examples/badfullerr.rul:26: declaring B: already declared sym 'B'
+examples/badfullerr.rul:27: declaring C: already declared sym 'C'
+examples/badfullerr.rul:29: declaring int: already declared sym: no shadowing 'nmsg'
+examples/badfullerr.rul:30: declaring int: already declared sym: no shadowing 'potato'
+examples/badfullerr.rul:32: declaring int: already declared sym: no shadowing 'another'
+examples/badfullerr.rul:34: already declared sym 'Msg'
+examples/badfullerr.rul:34: bad rule
+examples/badfullerr.rul:42: declaring ALEV: already declared sym 'ALEV'
+examples/badfullerr.rul:43: declaring B: already declared sym 'B'
+examples/counterr.rul:11: var another set and not used
+examples/counterr.rul:15: set(0, (0 + 1)): lval constant 0 of type (int, eexpr) is not a variable
+examples/diverr.rul:10: division by zero (3.000000 / 0.000000)
+examples/diverr.rul:14: division by zero (5.000000 / 0.000000)
+examples/diverr.rul:16: division by zero (6 / 0)
+examples/diverr.rul:20: division by zero (7.000000 / 0.000000)
+examples/diverr.rul:24: division by zero (9 / 0)
+examples/diverr.rul:26: division by zero (badz / 0)
+examples/diverr.rul:28: division by zero (badf / 0.000000)
+examples/diverr.rul:9: division by zero (2 / 0)
+examples/divtypeerr.rul:10: type error in initializer expression (3.000000 / 0) of type (undef, eundef)
+examples/divtypeerr.rul:14: type error in initializer expression (5.000000 / 0) of type (undef, eundef)
+examples/divzeroerr.rul:17: division by zero (12 / 0)
+examples/fcall2err.rul:10: var ttt used but not set (should be constant)
+examples/fcall2err.rul:9: type error in initializer expression set(false) of type (bool, eundef)
+examples/fcall2err.rul:9: var ismatch set and not used
+examples/fcallerr.rul:9: incorrect expression false...: cannot call a TokBoolVal
+examples/initvarerr.rul:11: var x used but not set (should be constant)
+examples/msgerr.rul:10: var nmsg set and not used
+examples/msgerr.rul:11: var another set and not used
+examples/msgerr.rul:13: unknown secid type Ms
+examples/nooperr.rul:9: incorrect expression false...: no operator
+examples/noquesterr.rul:13: incorrect expression topicmatches("RULE")...: no operator
+examples/notypeerr.rul:9: expected TokId found =
+examples/regexperr.rul:11: var ismatch set and not used
+examples/regexperr.rul:12: var regexp used but not set (should be constant)
+examples/regexperr.rul:17: incorrect action true, can only be a function call
+examples/rulenameerr.rul:10: var s unused and unset
+examples/rulenameerr.rul:11: var nmsg used but not set (should be constant)
+examples/rulenameerr.rul:12: var another set and not used
+examples/rulenameerr.rul:16: set("sect_00000:rule_00000", (nmsg + 1)): lval constant "sect_00000:rule_00000" of type (string, eexpr) is not a variable
+examples/secterr.rul:13: arg unknown symbol sectionid:Msg of type (undef, eundef) of publishersinclude(sectionid:Msg) of incorrect type (string, emsg) in section type  (undef, eundef)
+examples/secterr.rul:14: incorrect trigger expression should be boolean sectionid:Msg
+examples/sectlevelerr.rul:3: expected : found Msg
+examples/seterr.rul:15: set(nmsg, (nmsg + 1)) expected expression, not an action
+examples/simpleerr.rul:14: incorrect expression for action set(ismatch, true)...: no operator
+examples/stringerr.rul:20: bad number of args for function, string("hola", " adios") expected 1, got 2
+examples/stringerr.rul:20: bad number of args for function, string() expected 1, got 0
+examples/tripleerr.rul:14: incorrect expression for action set(ismatch, true)...: no operator
+examples/tripleerr.rul:18: incorrect expression for action set(ismatch, true)...: no operator
+examples/tripleerr.rul:9: incorrect expression false...: no operator

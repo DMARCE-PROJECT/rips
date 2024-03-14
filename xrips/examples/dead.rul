@@ -1,0 +1,30 @@
+#!/bin/rips
+
+levels:
+	ALEV; #A level
+	B;
+	C soft;
+
+vars:
+	cebolla string = "hola";
+	isseen bool = false;
+	isanother bool = false;
+	num int = 16 + 1 - 1;
+
+rules Msg:
+	 false ?
+		set(isseen, true);
+	!(cebolla > "aaa") ?	#also dead
+		set(isseen, true) => set(num, 0xa&((7*5)/3)), set(isseen, isseen), set(cebolla, cebolla);
+	true < false ?
+		set(isseen, true);
+	true < false || "bbb" < "aa" ?
+		set(isseen, true);
+	((3 + 5)&0xff)  > 0xaa || "bbb" < "aa" ?
+		set(isseen, true), set(num, num);
+	true?
+		set(isanother, true), set(isanother, true);
+	true ?
+		set(isanother, isanother);
+	true?
+		trigger(B), trigger(C);

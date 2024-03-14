@@ -1,0 +1,22 @@
+#!/bin/rips
+
+levels:
+	ALEV; #A level
+	B;
+	C soft;
+
+consts:
+	cebolla string = "zhola";
+
+vars:
+	patata int = 0;
+
+rules Msg:
+	!("zola" > "hola") && 1 > 20 ?
+		True("time", Time + (2 + 3)), alert("hola");
+	cebolla > "hola" ?
+		True("uptime", Uptime), set(patata, Time), True("patata", patata);
+	payload("/home/paurea/gits/rips/extern/examples/rule.yar")  ?
+		alert("yara is screaming");
+	false?
+		trigger(B),trigger(C);

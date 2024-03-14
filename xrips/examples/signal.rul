@@ -1,0 +1,17 @@
+#!/bin/rips
+
+levels:
+	ALEV; #A level
+	B;
+	C soft;
+vars:
+	nints int = 0;
+
+rules External:
+	signal("SIGUSR1") ?
+		set(nints, nints + 1);
+	nints > 2 ?
+		True(nints);
+	false?
+		trigger(B), trigger(C);
+## comment eof

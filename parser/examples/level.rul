@@ -1,0 +1,16 @@
+#!/bin/rips
+
+levels:
+	ALEV; #A level
+	B;
+	C soft;
+
+vars:
+	patata int = 0;
+	cebolla string = "zhola";
+	iscebolla bool = false;
+	zanahoria float = 18.0;
+
+rules Msg:
+	true ?
+		trigger(B);

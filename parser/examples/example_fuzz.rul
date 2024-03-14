@@ -1,0 +1,38 @@
+#!/bin/rips
+
+levels:
+	ALEV; #A level
+	B;
+	C soft;
+	D;
+
+consts:
+	y string = "zzz";
+	nnn int = 23;
+vars:
+	x string = "";
+	patata int = 0;
+	cebolla string = "hola";
+	istiki string = "hola" > "hala";
+	iscebolla bool = false;
+	zanahoria float = 18.0;
+
+rules Msg:
+	(cebolla > "hola") && istiki ?
+		set(iscebolla, true && istiki),
+		heremsg(3);
+
+	(zanahoria > 7.0 && cebolla > "hola") ? 
+		gohere(1) =>
+		set(patata, 0.5) !> heremsg(~2-2);
+
+	(zanahoria > (7.0+1.0) && istiki >= "hola") ? 
+		gohere(71) =>
+		set(patata, 0.5) !> heremsg(~4-2);
+
+rules Graph:
+	cebolla > "hola" ?
+		set(iscebolla, true), heregraph(5^3+patata+D);
+	true?
+		set(x, CurrRule+y), set(patata, 3+CurrTime+Uptime&3 - nnn);
+

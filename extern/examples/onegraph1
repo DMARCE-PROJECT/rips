@@ -1,0 +1,44 @@
+---
+event: graph
+context:
+  nodes:
+    - node: rips
+      gids:
+        - 9a.42.c0.75.93.e2.db.77.de.98.d0.d8.00.00.04.03.00.00.00.00.00.00.00.00
+        - 9a.42.c0.75.93.e2.db.77.de.98.d0.d8.00.00.03.03.00.00.00.00.00.00.00.00
+      services:
+        - service: /rips/describe_parameters
+          params:
+            - rcl_interfaces/srv/DescribeParameters
+        - service: /rips/get_parameter_types
+          params:
+            - rcl_interfaces/srv/GetParameterTypes
+        - service: /rips/get_parameters
+          params:
+            - rcl_interfaces/srv/GetParameters
+        - service: /rips/list_parameters
+          params:
+            - rcl_interfaces/srv/ListParameters
+        - service: /rips/set_parameters
+          params:
+            - rcl_interfaces/srv/SetParameters
+        - service: /rips/set_parameters_atomically
+          params:
+            - rcl_interfaces/srv/SetParametersAtomically
+  topics:
+    - topic: /parameter_events
+      parameters:
+        - rcl_interfaces/msg/ParameterEvent
+      publishers:
+        - rips
+      subscribers:
+        - ~
+    - topic: /rosout
+      parameters:
+        - rcl_interfaces/msg/Log
+      publishers:
+        - rips
+      subscribers:
+        - ~
+...
+
